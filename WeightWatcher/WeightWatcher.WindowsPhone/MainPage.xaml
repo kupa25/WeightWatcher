@@ -56,7 +56,12 @@
                 </Grid>
             </PivotItem>
             <PivotItem Header="Enter Weight">
-                <Grid/>
+                <StackPanel>
+                    
+                    <TextBox x:Name="WeightTxt" Margin="0" TextWrapping="Wrap" PlaceholderText="Weight" VerticalAlignment="Top" Width="auto" HorizontalAlignment="Stretch"/>
+                    <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Tapped="SaveButton_Tapped"/>
+
+                </StackPanel>
             </PivotItem>
         </Pivot>
 

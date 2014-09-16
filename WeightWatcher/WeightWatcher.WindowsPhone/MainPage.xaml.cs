@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -13,7 +14,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace WeightWatcher
@@ -45,26 +45,30 @@ namespace WeightWatcher
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
         }
-    }
-    public class DailyWeight
-    {
-        public double Weight { get; set; }
 
-        public DateTime Date { get; set; }
+        private void SaveButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            //save it on the cloud
+
+            try
+            {
+                //JsonConvert.SerializeObject();
+
+                Storage.AddValues(WeightTxt.Text);
+            }
+            catch (Exception ex)
+            {
+                //handle this
+            }
+
+        }
+
     }
     public class Viewmodel
     {
         public Viewmodel()
         {
-            this.Products = new ObservableCollection<DailyWeight>();
-
-            Products.Add(new DailyWeight() { Weight = 1, Date = DateTime.Now.AddDays(-6)});
-            Products.Add(new DailyWeight() { Weight = 2, Date = DateTime.Now.AddDays(-5) });
-            Products.Add(new DailyWeight() { Weight = 3, Date = DateTime.Now.AddDays(-4) });
-            Products.Add(new DailyWeight() { Weight = 4, Date = DateTime.Now.AddDays(-3) });
-            Products.Add(new DailyWeight() { Weight = 5, Date = DateTime.Now.AddDays(-2) });
-            Products.Add(new DailyWeight() { Weight = 6, Date = DateTime.Now.AddDays(-1) });
-            Products.Add(new DailyWeight() { Weight = 7, Date = DateTime.Now });
+            this.Products = Storage.GetValuesFromCloud();
         }
 
         public ObservableCollection<DailyWeight> Products { get; set; }
