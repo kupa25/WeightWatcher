@@ -31,7 +31,7 @@
                         </Charts:SfChart.PrimaryAxis>
                         <Charts:SfChart.SecondaryAxis>
                             <Charts:NumericalAxis Header="Export" HeaderTemplate="{StaticResource headerTemplate}"  
-                                    Minimum="0" Maximum="10" Interval="1"     
+                                    Minimum="50" Maximum="200" Interval="5"
                             FontSize="18"   LabelTemplate="{StaticResource labelTemplate}"></Charts:NumericalAxis>
                         </Charts:SfChart.SecondaryAxis>
 

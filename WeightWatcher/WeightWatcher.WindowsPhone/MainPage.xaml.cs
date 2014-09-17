@@ -55,14 +55,13 @@ namespace WeightWatcher
                 //JsonConvert.SerializeObject();
 
                 Storage.AddValues(WeightTxt.Text);
+                new Viewmodel();
             }
             catch (Exception ex)
             {
                 //handle this
             }
-
         }
-
     }
     public class Viewmodel
     {
