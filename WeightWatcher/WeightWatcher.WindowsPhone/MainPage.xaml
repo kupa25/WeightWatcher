@@ -8,22 +8,8 @@
     x:Class="WeightWatcher.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <!--<Page.Resources>
-        <CollectionViewSource x:Name="MyViewModel"/>
-
-        <DataTemplate x:Key="headerTemplate">
-            <TextBlock FontSize="20" Margin="5" Text="{Binding}"></TextBlock>
-        </DataTemplate>
-        <DataTemplate x:Key="labelTemplate">
-            <TextBlock FontSize="20" Margin="5" Text="{Binding Path=LabelContent}"></TextBlock>
-        </DataTemplate>
-    </Page.Resources>-->
 
     <Grid x:Name="ChartGrid">
-        <!--<Grid.DataContext>
-            <CollectionViewSource x:Name="GridViewSource" />
-            --><!--<local:Viewmodel x:Name="GridViewmodel"/>--><!--
-        </Grid.DataContext>-->
         <Grid.Resources>
             <DataTemplate x:Key="headerTemplate">
                 <TextBlock FontSize="20" Margin="5" Text="{Binding}"></TextBlock>
@@ -55,13 +41,6 @@
                                            XBindingPath="Date"
                                            ItemsSource="{Binding Products}"
                                            Label="India">
-                            <!--<Charts:AreaSeries.AdornmentsInfo>
-                                <Charts:ChartAdornmentInfo AdornmentsPosition="Bottom"  HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                                  ShowConnectorLine="False" 
-                                                  ConnectorHeight="30" ShowLabel="True"
-                                                  >
-                                </Charts:ChartAdornmentInfo>
-                            </Charts:AreaSeries.AdornmentsInfo>-->
                         </Charts:AreaSeries>
                     </Charts:SfChart>
                 </Grid>
@@ -77,4 +56,10 @@
         </Pivot>
 
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="AboutButton" Icon="People" Label="About" Click="AboutButton_Click"/>
+            <AppBarButton x:Name="ExportButton" Icon="Go" Label="Export" Click="ExportButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
