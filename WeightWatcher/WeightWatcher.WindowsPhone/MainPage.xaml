@@ -8,11 +8,22 @@
     x:Class="WeightWatcher.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <!--<Page.Resources>
+        <CollectionViewSource x:Name="MyViewModel"/>
 
-    <Grid>
-        <Grid.DataContext>
-            <local:Viewmodel/>
-        </Grid.DataContext>
+        <DataTemplate x:Key="headerTemplate">
+            <TextBlock FontSize="20" Margin="5" Text="{Binding}"></TextBlock>
+        </DataTemplate>
+        <DataTemplate x:Key="labelTemplate">
+            <TextBlock FontSize="20" Margin="5" Text="{Binding Path=LabelContent}"></TextBlock>
+        </DataTemplate>
+    </Page.Resources>-->
+
+    <Grid x:Name="ChartGrid">
+        <!--<Grid.DataContext>
+            <CollectionViewSource x:Name="GridViewSource" />
+            --><!--<local:Viewmodel x:Name="GridViewmodel"/>--><!--
+        </Grid.DataContext>-->
         <Grid.Resources>
             <DataTemplate x:Key="headerTemplate">
                 <TextBlock FontSize="20" Margin="5" Text="{Binding}"></TextBlock>
@@ -36,7 +47,7 @@
                         </Charts:SfChart.SecondaryAxis>
 
                         <Charts:AreaSeries Stroke="#FF1BA1E2" Interior="#781BA1E2" StrokeThickness="2"
-                                           EnableAnimation="True"
+                                           EnableAnimation="false"
                                            ShowTooltip="True"
                                            Charts:ChartTooltip.EnableAnimation="True"
                                            x:Name="AreaSeries"

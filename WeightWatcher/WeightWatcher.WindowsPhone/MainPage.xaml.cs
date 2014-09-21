@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Storage;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace WeightWatcher
 {
@@ -23,9 +11,16 @@ namespace WeightWatcher
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Viewmodel _items;
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            var items = new Viewmodel();
+            items.Products.CollectionChanged += Products_CollectionChanged;
+
+            ChartGrid.DataContext = items;
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
@@ -46,16 +41,18 @@ namespace WeightWatcher
             // this event is handled for you.
         }
 
+        void Products_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            //handle when dynamic refresh of the chart is required.
+        }
+
         private void SaveButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //save it on the cloud
-
             try
             {
-                //JsonConvert.SerializeObject();
-
-                Storage.AddValues(WeightTxt.Text);
-                new Viewmodel();
+                var newDailyWeight = Storage.AddValues(WeightTxt.Text);
+                var item = (Viewmodel)ChartGrid.DataContext;
+                item.Products.Add(newDailyWeight);
             }
             catch (Exception ex)
             {

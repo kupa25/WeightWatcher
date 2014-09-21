@@ -23,9 +23,12 @@ namespace WeightWatcher
             return result;
         }
 
-        public static void AddValues(string value)
+        public static DailyWeight AddValues(string value)
         {
-            cloudStorage.Values.Add(GetkeyValuepair(value));
+            var addition = GetkeyValuepair(value);
+            cloudStorage.Values.Add(addition);
+
+            return JsonConvert.DeserializeObject<DailyWeight>(addition.Value.ToString());
         }
 
         private static KeyValuePair<string, object> GetkeyValuepair(string value)
