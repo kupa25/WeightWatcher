@@ -162,7 +162,10 @@ namespace WeightWatcher
 
         private void AboutButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            //Clicked the About button
+            if (!Frame.Navigate(typeof(About)))
+            {
+                throw new Exception("Failed to navigate");
+            }
         }
     }
     public class Viewmodel
