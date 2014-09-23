@@ -115,51 +115,23 @@ namespace WeightWatcher
             //}
 
             // Entering the Datas for the chart
-            chartSheet.Range["A1"].Text = "Jacksonville, FL";
-            chartSheet.Range["A1:D1"].Merge();
-            chartSheet.Range["A1"].CellStyle.Font.Bold = true;
+            chartSheet.Range["B3"].Text = "Weight progression";
+            chartSheet.Range["B3"].CellStyle.Font.Bold = true;
 
-            chartSheet.Range["B3"].Text = "Precipitation,in.";
-            chartSheet.Range["C3"].Text = "Temperature,deg.F";
+            chartSheet.Range["B5"].Text = "Date";
+            chartSheet.Range["C5"].Text = "Weight";
 
-            chartSheet.Range["A4"].Text = "Jan";
-            chartSheet.Range["A5"].Text = "Feb";
-            chartSheet.Range["A6"].Text = "March";
-            chartSheet.Range["A7"].Text = "Apr";
-            chartSheet.Range["A8"].Text = "May";
-            chartSheet.Range["A9"].Text = "June";
-            chartSheet.Range["A10"].Text = "July";
-            chartSheet.Range["A11"].Text = "Aug";
-            chartSheet.Range["A12"].Text = "Sept";
-            chartSheet.Range["A13"].Text = "Oct";
-            chartSheet.Range["A14"].Text = "Nov";
-            chartSheet.Range["A15"].Text = "Dec";
+            var cellColumn = 7;
+            var counter = 1;
+            foreach (var item in Storage.GetValuesFromCloud())
+            {
+                chartSheet.Range["A" + cellColumn].Number = counter++;
+                chartSheet.Range["B"+cellColumn].DateTime = item.Date;
+                chartSheet.Range["C"+cellColumn].Number = item.Weight;
 
-            //chartSheet.Range["B4"].Number = 10.9;
-            //chartSheet.Range["B5"].Number = 8.9;
-            //chartSheet.Range["B6"].Number = 8.6;
-            //chartSheet.Range["B7"].Number = 4.8;
-            //chartSheet.Range["B8"].Number = 3.2;
-            //chartSheet.Range["B9"].Number = 1.4;
-            //chartSheet.Range["B10"].Number = 0.6;
-            //chartSheet.Range["B11"].Number = 0.7;
-            //chartSheet.Range["B12"].Number = 1.7;
-            //chartSheet.Range["B13"].Number = 5.4;
-            //chartSheet.Range["B14"].Number = 9.0;
-            //chartSheet.Range["B15"].Number = 10.4;
+                cellColumn++;
+            }
 
-            //chartSheet.Range["C4"].Number = 4.5;
-            //chartSheet.Range["C5"].Number = 2.7;
-            //chartSheet.Range["C6"].Number = 9.9;
-            //chartSheet.Range["C7"].Number = 4.2;
-            //chartSheet.Range["C8"].Number = 6.1;
-            //chartSheet.Range["C9"].Number = 5.3;
-            //chartSheet.Range["C10"].Number = 3.1;
-            //chartSheet.Range["C11"].Number = 7;
-            //chartSheet.Range["C12"].Number = 4.5;
-            //chartSheet.Range["C13"].Number = 8.4;
-            //chartSheet.Range["C14"].Number = 3.1;
-            //chartSheet.Range["C15"].Number = 8.8;
             chartSheet.UsedRange.AutofitColumns();
             #endregion
 
